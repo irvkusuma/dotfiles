@@ -1,0 +1,8 @@
+backend = "fastresize"
+color_space = "lab"
+palette = "dark16"
+
+[templates]
+plasma = { template = "plasma.colors", target = "~/.local/share/color-schemes/Wallust.colors" }
+kitty  = { template = "kitty.conf",    target = "~/.config/kitty/colors-wallust.conf" }
+rofi   = { template = "rofi-colors.rasi",  target = "~/.config/rofi/colors.rasi" }

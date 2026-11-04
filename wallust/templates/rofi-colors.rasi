@@ -1,0 +1,9 @@
+* {
+    bg:        {{background}}e6;   /* e6 = sedikit transparan */
+    bg-alt:    {{color0}};
+    fg:        {{foreground}};
+    fg-dim:    {{color8}};
+    accent:    {{color4}};
+    accent-2:  {{color5}};
+    urgent:    {{color1}};
+}

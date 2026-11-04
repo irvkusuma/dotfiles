@@ -1,0 +1,14 @@
+configuration {
+    modes: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-drun: "󰀻 Apps";
+    display-run: " Run";
+    display-window: " Window";
+    drun-display-format: "{name}";
+    matching: "fuzzy";
+    sort: true;
+    sorting-method: "fzf";
+    kb-mode-next: "Tab";
+    kb-element-next: "";
+}
