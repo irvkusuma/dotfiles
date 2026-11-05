@@ -9,3 +9,10 @@ id_*
 *.key
 *.log
 colors.lua
+
+# clipse: riwayat clipboard bisa berisi data sensitif
+**/clipse/clipboard_history.json
+**/clipse/tmp_files/
+**/clipse/clipse.log
+# hasil generate wallust
+**/clipse/custom_theme.json
