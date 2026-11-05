@@ -58,6 +58,7 @@ local menu = "rofi -show run"
 hl.on("hyprland.start", function()
     -- ...yang sudah ada (waybar, swww-daemon, mako, dst.)...
     hl.exec_cmd("nwg-dock-hyprland -d -i 44 -mb 10")
+    hl.exec_cmd("clipse -listen")
 end)
 
 
@@ -235,6 +236,16 @@ hl.window_rule({
 })
 
 
+-- SET CLIPBOARD HISTORY WINDOW
+hl.window_rule({
+  name  = "clipse",
+  match = { class = "^(clipse)$" },
+  float = true,
+  size  = "622 652",
+--  center = true,
+  move = { "(cursor_x-(window_w*0.5))", "(cursor_y-(window_h*0.5))" }
+})
+
 
 ----------------
 ----  MISC  ----
@@ -307,7 +318,7 @@ local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
@@ -357,6 +368,8 @@ hl.bind("SUPER + SPACE", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/launc
 hl.bind("SUPER + W",     hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/setwall.sh"))
 hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/powermenu.sh"))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
+--hl.bind("SUPER + V", hl.dsp.exec_cmd("~/.config/rofi/clipboard.sh"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("kitty --class clipse -o confirm_os_window_close=0 -e clipse"))
 
 
 -- Autostart
