@@ -55,6 +55,9 @@ set_wallpaper "$WALL" || notify "Gagal mengganti wallpaper"
 # ---------- 3. Generate palette ----------
 wallust run "$WALL" || notify "wallust gagal"
 
+# Terapkan warna border Hyprland
+[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] && hyprctl reload >/dev/null 2>&1
+
 # ---------- 4. Terapkan warna sesuai desktop ----------
 case "$DESKTOP" in
     *kde*)

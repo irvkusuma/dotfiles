@@ -8,3 +8,4 @@ id_*
 *.pem
 *.key
 *.log
+colors.lua

@@ -5,29 +5,27 @@ pgrep -x rofi >/dev/null && { pkill -x rofi; exit 0; }
 
 THEME="$HOME/.config/rofi/powermenu.rasi"
 
-# Satu pilihan = ikon besar + label kecil di bawahnya (markup pango)
-entry() { printf '<span size="30pt">%s</span>\n<span size="11pt">%s</span>' "$1" "$2"; }
+entry() { printf '%s  %s' "$1" "$2"; }
 
 uptime_text=$(uptime -p | sed 's/^up //')
 
 # Konfirmasi untuk aksi yang menutup sesi atau mematikan sistem
 confirm() {
     local answer
-    answer=$(printf '%s|%s' "$(entry 󰄬 Ya)" "$(entry 󰜺 Batal)" | \
-        rofi -dmenu -sep '|' -markup-rows -format i \
+    answer=$(printf '%s\n%s\n' "$(entry 󰄬 Ya)" "$(entry 󰜺 Batal)" | \
+        rofi -dmenu -i -format i \
             -mesg "$1?" \
             -theme "$THEME" \
-            -theme-str 'window {width: 360px;} listview {columns: 2;}')
+            -theme-str 'window {width: 30%;} listview {columns: 2;}')
     [ "$answer" = "0" ]
 }
 
-# -sep '|' memisahkan pilihan dengan tanda |, sehingga tiap pilihan boleh berisi dua baris
-choice=$(printf '%s|%s|%s|%s' \
+choice=$(printf '%s\n%s\n%s\n%s\n' \
     "$(entry 󰤄 Suspend)" \
     "$(entry 󰍃 Logout)" \
     "$(entry 󰜉 Restart)" \
     "$(entry 󰐥 Shutdown)" | \
-    rofi -dmenu -sep '|' -markup-rows -format i \
+    rofi -dmenu -i -format i \
         -mesg "Uptime: $uptime_text" \
         -theme "$THEME")
 

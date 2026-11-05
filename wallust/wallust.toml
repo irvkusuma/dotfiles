@@ -8,3 +8,4 @@ kitty  = { template = "kitty.conf",    target = "~/.config/kitty/colors-wallust.
 rofi   = { template = "rofi-colors.rasi",  target = "~/.config/rofi/colors.rasi" }
 waybar = { template = "waybar-colors.css", target = "~/.config/waybar/colors.css" }
 dock   = { template = "nwg-dock.css",      target = "~/.config/nwg-dock-hyprland/style.css" }
+hypr = { template = "hypr-colors.lua", target = "~/.config/hypr/colors.lua" }

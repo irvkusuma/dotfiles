@@ -144,6 +144,22 @@ hl.config({
     },
 })
 
+-- Warna border dari wallust (ada fallback kalau colors.lua belum dibuat)
+local ok, colors = pcall(require, "colors")
+if not ok then
+    colors = { active = "rgb(ffffff)", inactive = "rgba(595959aa)" }
+end
+
+hl.config({
+    general = {
+        border_size = 2,
+        col = {
+            active_border = colors.active,
+            inactive_border = colors.inactive,
+        },
+    },
+})
+
 -- Default curves and animations, see https://wiki.hypr.land/configuring/core/animations/
 hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
@@ -210,6 +226,15 @@ hl.config({
         fullscreen_on_one_column = true,
     },
 })
+
+
+-- Apply opacity and override behaviors specifically for Firefox
+hl.window_rule({
+  match = { class = "firefox" },
+  opacity = "0.95 override 0.85 override", -- Format: "active override inactive override"
+})
+
+
 
 ----------------
 ----  MISC  ----
@@ -331,7 +356,7 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/launcher.sh"))
 hl.bind("SUPER + W",     hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/setwall.sh"))
 hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/powermenu.sh"))
-
+hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
 
 -- Autostart
