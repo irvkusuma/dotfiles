@@ -1,0 +1,10 @@
+colors.rasi
+colors.css
+colors-wallust.conf
+Wallust.colors
+ssh
+ssh.pub
+id_*
+*.pem
+*.key
+*.log

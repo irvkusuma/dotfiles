@@ -1,0 +1,22 @@
+window {
+    background-color: alpha({{background}}, 0.80);
+    border-radius: 18px;
+    border: 2px solid {{color4}};
+    padding: 6px;
+}
+
+#box {
+    padding: 4px 8px;
+}
+
+button {
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    padding: 6px;
+    margin: 0 3px;
+}
+
+button:hover {
+    background-color: alpha({{color4}}, 0.30);
+}

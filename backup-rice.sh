@@ -2,14 +2,34 @@
 set -e
 
 DEST="$HOME/dotfiles"
-mkdir -p "$DEST"/{bin,wallust,rofi}
+mkdir -p "$DEST"/{bin,wallust/templates,rofi,waybar,hypr}
 
-cp ~/.local/bin/setwall.sh ~/.local/bin/launcher.sh "$DEST/bin/"
+# Script
+for f in setwall.sh launcher.sh powermenu.sh backup-rice.sh restore-rice.sh; do
+    [ -f "$HOME/.local/bin/$f" ] && cp "$HOME/.local/bin/$f" "$DEST/bin/"
+done
+
+# wallust
 cp ~/.config/wallust/wallust.toml "$DEST/wallust/"
-cp -r ~/.config/wallust/templates "$DEST/wallust/"
-cp ~/.config/rofi/{config,launcher,wallpicker}.rasi "$DEST/rofi/"
+cp -r ~/.config/wallust/templates/. "$DEST/wallust/templates/"
+
+# rofi (colors.rasi sengaja tidak ikut karena dihasilkan wallust)
+for f in config launcher wallpicker powermenu; do
+    [ -f "$HOME/.config/rofi/$f.rasi" ] && cp "$HOME/.config/rofi/$f.rasi" "$DEST/rofi/"
+done
+
+# waybar (colors.css tidak ikut)
+cp ~/.config/waybar/config.jsonc ~/.config/waybar/style.css "$DEST/waybar/"
+
+# hyprland
+cp ~/.config/hypr/hyprland.lua "$DEST/hypr/"
 
 cd "$DEST"
 [ -d .git ] || git init -q
 git add -A
-git commit -qm "Backup $(date +%F-%H%M)" && echo "Backup tersimpan di $DEST" || echo "Tidak ada perubahan"
+if git diff --cached --quiet; then
+    echo "Tidak ada perubahan"
+else
+    git commit -qm "Backup $(date +%F-%H%M)"
+    echo "Backup tersimpan di $DEST"
+fi

@@ -1,0 +1,55 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 8,
+
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "pulseaudio", "network", "cpu", "memory", "battery", "custom/power"],
+
+    "custom/launcher": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "~/.local/bin/launcher.sh"
+    },
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate"
+    },
+    "hyprland/window": {
+        "max-length": 40,
+        "separate-outputs": true
+    },
+    "clock": {
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "{:%A, %d %B %Y}"
+    },
+    "tray": { "spacing": 8 },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 mute",
+        "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
+        "on-click": "pamixer -t"
+    },
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 {ipaddr}",
+        "format-disconnected": "󰤭 offline"
+    },
+    "cpu":    { "format": " {usage}%" },
+    "memory": { "format": " {percentage}%" },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+        "states": { "warning": 25, "critical": 10 }
+    },
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip": false,
+        "on-click": "~/.local/bin/powermenu.sh"
+    }
+}

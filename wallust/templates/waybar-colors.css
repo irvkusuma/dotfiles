@@ -1,0 +1,9 @@
+@define-color bg        {{background}};
+@define-color bg-alt    {{color0}};
+@define-color fg        {{foreground}};
+@define-color fg-dim    {{color8}};
+@define-color accent    {{color4}};
+@define-color accent-2  {{color5}};
+@define-color urgent    {{color1}};
+@define-color good      {{color2}};
+@define-color warn      {{color3}};
